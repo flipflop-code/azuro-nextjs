@@ -7,7 +7,39 @@ import { polygonAmoy, gnosis, polygon, arbitrum } from 'wagmi/chains'
 import { WagmiProvider } from 'wagmi'
 
 import { BetslipProvider } from '@/context/betslip'
+import { defineChain } from 'viem'
 
+export const chiliz = /*#__PURE__*/ defineChain({
+  id: 88888,
+  name: 'Chiliz Chain',
+  network: 'chiliz-chain',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'CHZ',
+    symbol: 'CHZ',
+  },
+  rpcUrls: {
+    default: {
+      http: [
+        'https://rpc.ankr.com/chiliz',
+        'https://chiliz-rpc.publicnode.com',
+      ],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: 'Chiliz Explorer',
+      url: 'https://scan.chiliz.com',
+      apiUrl: 'https://scan.chiliz.com/api',
+    },
+  },
+  contracts: {
+    multicall3: {
+      address: '0xca11bde05977b3631167028862be2a173976ca11',
+      blockCreated: 8080847,
+    },
+  },
+})
 
 const { wallets } = getDefaultWallets()
 
@@ -16,11 +48,12 @@ const chains = [
   gnosis,
   polygon,
   arbitrum,
+  chiliz
 ] as const
 
 const wagmiConfig = getDefaultConfig({
-  appName: 'Azuro',
-  projectId: '2f82a1608c73932cfc64ff51aa38a87b', // get your own project ID - https://cloud.walletconnect.com/sign-in
+  appName: 'Azuro-Chiliz',
+  projectId: '225beb01569c7bc66625d6c678820236', // get your own project ID - https://cloud.walletconnect.com/sign-in
   wallets,
   chains,
   ssr: false,
@@ -36,7 +69,8 @@ type ProvidersProps = {
 
 export function Providers(props: ProvidersProps) {
   const { children, initialChainId, initialLiveState } = props
-
+  console.log("initialChainId::", initialChainId);
+  console.log("chains::", chains);
   const chainId = initialChainId &&
                   chains.find(chain => chain.id === +initialChainId) ? +initialChainId as ChainId : polygonAmoy.id
 

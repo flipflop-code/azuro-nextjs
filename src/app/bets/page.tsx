@@ -21,7 +21,7 @@ export default function Bets() {
   const bets = useMemo(() => {
     return [...liveBets, ...prematchBets].sort((betA, betB) => betB.createdAt - betA.createdAt)
   }, [ prematchBets, liveBets ])
-  console.log("bets::", bets);
+
   if (isLiveLoading || isPrematchLoading) {
     return <div>Loading...</div>
   }

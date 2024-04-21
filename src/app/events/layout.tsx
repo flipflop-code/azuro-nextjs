@@ -23,7 +23,7 @@ const useData = () => {
   }
 
   const { loading, sports } = useSports(props)
-  console.log('sports::', sports);
+
   return {
     sports,
     loading,

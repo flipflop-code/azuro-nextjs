@@ -7,7 +7,6 @@ export function SportsNavigation() {
   const { loading, sports } = useSportsNavigation({
     withGameCount: true,
   })
-  console.log("SportsNavigation::", sports);
 
   if (loading) {
     return <div>Loading...</div>

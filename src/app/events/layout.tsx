@@ -6,6 +6,7 @@ import { useSports, type UseSportsProps, Game_OrderBy, OrderDirection } from '@a
 const useData = () => {
   const params = useParams()
   const isTopPage = params.sport === 'top'
+  console.log("params::", params);
 
   const props: UseSportsProps = isTopPage ? {
     gameOrderBy: Game_OrderBy.Turnover,
@@ -32,6 +33,7 @@ const useData = () => {
 
 export default function EventsLayout() {
   const { loading, sports } = useData()
+  console.log("sports::", sports);
 
   return (
     <>
